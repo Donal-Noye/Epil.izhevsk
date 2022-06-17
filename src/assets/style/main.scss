@@ -1,0 +1,137 @@
+@import "vars.scss";
+@import "fonts.css";
+@import "vendor/breakpoint.scss";
+@import 'vendor/reset.css';
+@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@400;600&family=Tiro+Devanagari+Sanskrit&display=swap');
+
+html {
+  overflow-y: overlay;
+  font-size: 62.5%;
+}
+
+body {
+  font-family: 'Source Sans Pro', sans-serif;
+  font-weight: 400;
+  font-size: 1.6rem;
+  color: $black;
+
+  &.no-scroll {
+    overflow: hidden;
+  }
+}
+
+.not-allowed {
+  cursor: not-allowed;
+}
+
+.container {
+  max-width: 1200px;
+  width: 100%;
+  padding: 0 25px;
+  margin: 0 auto;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+  height: 3px;
+  background-color: rgba($black, .7);
+}
+
+/* ползунок скроллбара */
+::-webkit-scrollbar-thumb {
+  background-color: rgba($white, .9);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #fff;
+}
+
+.cover {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+// .headline {
+//   padding: 13px 35px;
+
+//   font-size: 2rem;
+//   line-height: 25px;
+//   text-transform: uppercase;
+//   background: rgba(#fff, .3);
+//   border-radius: 30px;
+
+//   @include mobile {
+//     font-size: 1.5rem;
+//     line-height: 19px;
+//   }
+// }
+
+.sup {
+  margin-bottom: 4px;
+  padding: 5px 15px;
+
+  font-size: 1.4rem;
+  line-height: 16px;
+  color: $black;
+  background-color: rgba(#fff, 0.3);
+  border-radius: 20px;
+  text-transform: capitalize;
+
+  @include tablet {
+    background-color: rgba(#fff, 0.8);
+  }
+
+  @include small-mobile {
+    font-size: 1.2rem;
+  }
+}
+
+h2.headline {
+  font-size: 6.2rem;
+  line-height: 70px;
+  color: #fff;
+
+  @include tablet {
+    font-size: 4.8rem;
+    line-height: 50px;
+  }
+
+  @include small-tablet {
+    margin-bottom: 10px;
+
+    font-size: 3.6rem;
+  }
+
+  @include mobile {
+    font-size: 3rem;
+    line-height: 30px;
+  }
+}
+
+h3.headline {
+  font-size: 4.8rem;
+  line-height: 56px;
+
+  @include small-tablet {
+    font-size: 4.4rem;
+    line-height: 50px;
+  }
+
+  @include mobile {
+    font-size: 3.6rem;
+    line-height: 40px;
+  }
+}
+
+h4.headline {
+  font-weight: 600;
+  font-size: 3.6rem;
+  line-height: 37px;
+
+  @include mobile {
+    font-size: 3rem;
+    line-height: 34px;
+  } 
+}
