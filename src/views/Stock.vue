@@ -126,7 +126,7 @@ export default {
   background: $gradient;
 
   @include tablet {
-    padding-top: calc($header + 30px);
+    padding-top: calc($header + 20px);
   }
 
   &__headline.headline {

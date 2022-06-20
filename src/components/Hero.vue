@@ -131,6 +131,10 @@ export default {
   height: 100vh;
 
   background: $gradient;
+
+  @include mobile {
+    padding-top: 0;
+  }
   
   &__inner {
     display: grid;
@@ -160,9 +164,13 @@ export default {
       margin-top: -220px;
     }
 
-    @media (max-width: 506px) {
+    @include mobile {
       align-items: center;
       text-align: center;
+    }
+
+    @media (max-height: 790px) {
+      margin-top: -140px;
     }
   }
 
@@ -243,20 +251,16 @@ export default {
     }
 
     @include small-tablet {
-      margin-top: -70px;
+      margin-top: -30px;
       height: 66%;
       box-shadow: none;
     }
 
+    @media (max-height: 790px) {
+      height: 60%;
+    }
+
     @include mobile {
-      width: 60%;
-    }
-
-    @media (max-width: 454px) {
-      width: 80%;
-    }
-
-    @media (max-width: 400px) {
       width: 100%;
     }
 
@@ -306,6 +310,18 @@ export default {
 
     transition: background-color .4s $ease;
 
+    @include mobile {
+      padding: 12px 14px 10px 20px;
+      gap: 30px;
+      font-size: 1.2rem;
+    }
+
+    @include mobile {
+      gap: 50px;
+      padding-left: 28px;
+      padding-right: 20px;
+    }
+
     &:hover {
       background-color: darken($white, 5%);
     }
@@ -321,6 +337,10 @@ export default {
       line-height: 19px;
       text-transform: uppercase;
       color: #000;
+
+      @include mobile {
+        font-size: 1.4rem;
+      }
     }
   }
 
@@ -343,12 +363,12 @@ export default {
     @include small-tablet {
       width: 100%;
       
-      border-radius: 12px 12px 6px 6px;
+      border-radius: 12px;
       box-shadow: $shadow;
 
       position: absolute;
       left: 0;
-      bottom: 30px;
+      bottom: 20px;
     }
 
     @include mobile {

@@ -6,29 +6,35 @@
           <img src="@/assets/img/logo.jpg" alt="">
           <span>Epil.izhevsk</span>
         </router-link>
-        <button class="burger" @click="toggleMenu" :class="{ active: open }">
+        <button class="burger" @click="toggleSidebar" :class="{ active: open }">
           <div class="burger__inner">
             <span></span>
           </div>
         </button>
-        <transition name="menu">
-          <nav class="nav" v-show="open">
-            <div class="nav__top">
-              <button class="burger" @click="toggleMenu" :class="{ active: open }">
-                <div class="burger__inner">
-                  <span></span>
+        <teleport to='#app'>
+          <transition name="sidebar">
+            <aside class="sidebar" v-show="open" @click="toggleSidebar">
+              <transition name="sidebar-inner">
+                <div class="sidebar__inner" v-show="open" @click.stop>
+                  <div class="sidebar__top">
+                    <button class="burger" @click="toggleSidebar" :class="{ active: open }">
+                      <div class="burger__inner">
+                        <span></span>
+                      </div>
+                    </button>
+                  </div>
+                  <ul class="sidebar__list" @click="handleClick($event)">
+                    <li class="sidebar__item" v-for="link in sidebarList" :key="link">
+                      <router-link class="sidebar__link" :to="{ name: link.path }">
+                        {{ link.name }}
+                      </router-link>
+                    </li>
+                  </ul>
                 </div>
-              </button>
-            </div>
-            <ul class="nav__list">
-              <li class="nav__item" v-for="link in navList" :key="link">
-                <router-link class="nav__link" :to="{ name: link.path }">
-                  {{ link.name }}
-                </router-link>
-              </li>
-            </ul>
-          </nav>
-        </transition>
+              </transition>
+            </aside>
+          </transition>
+        </teleport>
       </div>
     </div>
   </header>
@@ -41,8 +47,8 @@ import { gsap, ScrollTrigger, Power4 } from 'gsap/all';
 gsap.registerPlugin(ScrollTrigger)
 
 export default {
-  setup() {
-    const navList = ref([
+  setup(_, emit) {
+    const sidebarList = ref([
       { name: 'Главная', path: 'Home' },
       { name: 'Прайс', path: 'Price' },
       { name: 'Акции', path: 'Stock' },
@@ -51,7 +57,7 @@ export default {
     ])
     const open = ref(false)
 
-    const toggleMenu = () => {
+    const toggleSidebar = () => {
       open.value = !open.value
       document.body.classList.toggle('no-scroll')
     }
@@ -60,9 +66,15 @@ export default {
       start: 'top -20',
       end: 99999,
       toggleClass: { className: 'header--scrolled', targets: '.header' }
-    });
+    })
 
-    return { navList, toggleMenu, open }
+    const handleClick = (e) => {
+      if (e.target.localName !== "a") return;
+
+      toggleSidebar()
+    }
+    
+    return { sidebarList, toggleSidebar, open, handleClick }
   }
 }
 </script>
@@ -211,28 +223,33 @@ export default {
   }
 }
 
-.nav {
-  width: 700px;
+.sidebar {
+  width: 100%;
   height: 100vh;
-
-  background-color: #fff;
-  box-shadow: $shadow;
 
   position: fixed;
   right: 0;
   top: 0;
   z-index: 1000;
 
-  @include tablet {
-    width: 50%;
-  }
+  &__inner {
+    width: 700px;
+    height: 100%;
 
-  @include mobile {
-    width: 70%;
-  }
+    background-color: #fff;
+    box-shadow: $shadow;
 
-  @include small-mobile {
-    width: 90%;
+    position: absolute;
+    right: 0;
+    z-index: 1001;
+
+    @include tablet {
+      width: 50%;
+    }
+
+    @include mobile {
+      width: 70%;
+    }
   }
 
   &__top {
@@ -308,14 +325,26 @@ export default {
   }
 }
 
-.menu-enter-active,
-.menu-leave-active {
-  transition: transform .8s $ease;
+.sidebar-enter-active,
+.sidebar-leave-active {
+  transition: visibility .7s $ease;
 }
 
-.menu-enter-from,
-.menu-leave-to {
+.sidebar-inner-enter-active,
+.sidebar-inner-leave-active {
+  transition: transform .7s $ease;
+}
+
+.sidebar-inner-enter-from {
   transform: translateX(100%);
 }
 
+.sidebar-inner-leave-to {
+  transform: translateX(100%);
+}
+
+.sidebar-enter-from,
+.sidebar-leave-to {
+  visibility: hidden;
+}
 </style>

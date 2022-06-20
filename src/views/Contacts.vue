@@ -78,8 +78,10 @@ export default {
     })
 
     const beforeEnter = (el) => {
-      el.style.transform = 'translateX(25px)'
-      el.style.opacity = 0
+      if (innerWidth >= 576) {
+        el.style.transform = 'translateX(25px)'
+        el.style.opacity = 0
+      }
     }
 
     const enter = (el) => {

@@ -1,5 +1,5 @@
 <template>
-  <div class="stock-card">
+  <a class="stock-card" href="https://dikidi.net/494671?p=0.pi">
     <div class="stock-card__image">
       <img class="cover" :src="require(`@/assets/img/${image}.jpg`)" alt="">
     </div>
@@ -14,7 +14,7 @@
         <p class="stock-card__price">{{ new Intl.NumberFormat('ru-RU').format(price).toString() }} ₽</p>
       </div>
     </div>
-  </div>
+  </a>
 </template>
 
 <script>
@@ -54,7 +54,7 @@ export default {
   @media (max-width: 482px) {
     padding: 14px;
     width: 100%;
-    height: 654px;
+    height: 564px;
   }
 
   &__image {

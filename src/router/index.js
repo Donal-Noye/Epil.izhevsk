@@ -55,7 +55,7 @@ const router = createRouter({
 })
 
 router.beforeEach((to, from, next) => {
-  document.title = `${to.meta.title}`
+  document.title = `Epil.izhevsk - ${to.meta.title}`
   next()
 })
 

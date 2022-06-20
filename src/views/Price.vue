@@ -94,13 +94,19 @@ export default {
     const tl = gsap.timeline() 
 
     onMounted(() => {
+      tl.from('.sup', {
+        scale: 0,
+        opacity: 0,
+        duration: 1.2,
+        ease: Power4.easeOut
+      })
       tl.from('.price__headline .headline', {
         yPercent: 100,
         stagger: 0.1,
         duration: 1.2,
         ease: Power4.easeOut
-      })
-      if (innerWidth > 768) {
+      }, '-=1')
+      if (innerWidth >= 768) {
         tl.to('.bg--1', {
           x: -12,
           y: 12,
@@ -157,12 +163,20 @@ export default {
   background: $gradient;
 
   @include mobile {
-    padding-top: 116px;
+    padding-top: calc($header + 20px);
+  }
+
+  @include small-mobile {
+    padding-top: $header;
   }
 
   &__headline {
     margin: 15px 0 30px;
     overflow: hidden;
+
+    @include mobile {
+      margin-bottom: 15px;
+    }
   }
 
   &__text {
@@ -201,13 +215,27 @@ export default {
       grid-template-columns: repeat(1, 1fr);
       margin-top: 33px;
     }
+
+    @include mobile {
+      grid-template-columns: repeat(1, 1fr);
+      margin-top: 0;
+      gap: 33px;
+    }
   }
 
   &__electrolysis {
     margin-top: 100px;
 
+    @include mobile {
+      margin-top: 50px;
+    }
+
     .price-card__inner {
       height: auto;
+    }
+
+    .price-card__content {
+      gap: 5px;
     }
   }
 }

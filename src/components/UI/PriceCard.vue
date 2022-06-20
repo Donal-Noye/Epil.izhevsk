@@ -73,13 +73,17 @@ export default {
     height: 498px;
 
     background-color: $white;
-    border-radius: 22px;
+    border-radius: 32px;
 
     position: relative;
     z-index: 3;
 
     @include small-tablet {
       padding: 20px;
+    }
+
+    @include mobile {
+      height: auto;
     }
   }
 
@@ -98,6 +102,10 @@ export default {
     @include small-tablet {
       gap: 50px;
       padding: 17px 17px 0;
+    }
+
+    @include mobile {
+      gap: 40px;
     }
   }
 
@@ -185,7 +193,7 @@ export default {
     padding: 17px 0;
 
     text-transform: uppercase;
-    background-color: $white;
+    background-color: darken($white, 5%);
     text-align: center;
 
     transition: background-color .1s $ease;
@@ -195,7 +203,7 @@ export default {
     }
 
     &:hover {
-      background-color: darken($white, 5%);
+      background-color: darken($white, 7%);
     }
 
     &:active {

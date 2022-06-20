@@ -30,54 +30,57 @@ gsap.registerPlugin(ScrollTrigger)
 export default {
   setup () {
     onMounted(() => {
-      gsap.from('.home-about__headline', {
-        scrollTrigger: {
-          start: 'top 70%',
-          trigger: '.home-about',
-        },
-        y: -50,
-        opacity: 0,
-        duration: 1,
-        ease: Power4.easeOut,
-      })
-      gsap.from('.home-about__text', {
-        scrollTrigger: {
-          start: '10% 70%',
-          trigger: '.home-about'
-        },
-        x: -50,
-        opacity: 0,
-        duration: 1.3,
-        ease: Power4.easeOut,
-      })
-      gsap.from('.home-about__link', {
-        scrollTrigger: {
-          start: '10% 70%',
-          trigger: '.home-about'
-        },
-        y: 20,
-        opacity: 0,
-        duration: 1,
-        ease: Power4.easeOut,
-      })
-      gsap.from('.home-about__image--1', {
-        scrollTrigger: {
-          start: '10% 70%',
-          trigger: '.home-about'
-        },
-        width: '0%',
-        duration: 1.5,
-        ease: Power4.easeOut,
-      })
-      gsap.from('.home-about__image--2', {
-        scrollTrigger: {
-          start: '20% 60%',
-          trigger: '.home-about'
-        },
-        height: '0%',
-        duration: 1,
-        ease: Power4.easeOut,
-      })
+      if (innerWidth >= 576) {
+        gsap.from('.home-about__headline', {
+          scrollTrigger: {
+            start: 'top 70%',
+            trigger: '.home-about',
+          },
+          y: -50,
+          opacity: 0,
+          duration: 1,
+          ease: Power4.easeOut,
+        })
+        gsap.from('.home-about__text', {
+          scrollTrigger: {
+            start: '10% 70%',
+            trigger: '.home-about'
+          },
+          x: -50,
+          opacity: 0,
+          duration: 1.3,
+          ease: Power4.easeOut,
+        })
+        gsap.from('.home-about__link', {
+          scrollTrigger: {
+            start: '10% 70%',
+            trigger: '.home-about'
+          },
+          y: 20,
+          opacity: 0,
+          duration: 1,
+          ease: Power4.easeOut,
+        })
+        gsap.from('.home-about__image--1', {
+          scrollTrigger: {
+            start: '10% 70%',
+            trigger: '.home-about'
+          },
+          width: '0%',
+          duration: 1.5,
+          ease: Power4.easeOut,
+        })
+        gsap.from('.home-about__image--2', {
+          scrollTrigger: {
+            start: '20% 60%',
+            trigger: '.home-about'
+          },
+          height: '0%',
+          duration: 1,
+          ease: Power4.easeOut,
+        })
+      }
+      
     })
   }
 }
